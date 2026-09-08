@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!-- kafao-v3: ES/EN + Camiseta Lux + Sobrecamisa Cafe + logo compacto -->
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Kafao · Ropa artesanal de Ecuador</title>
+  <meta name="description" content="Kafao — ropa y accesorios artesanales de Ecuador. Viste tu esencia étnica."/>
+  <meta property="og:title" content="Kafao"/>
+  <meta property="og:description" content="Ropa y accesorios artesanales de Ecuador. Viste tu esencia étnica."/>
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/og.jpg"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Figtree:wght@400;500;600;700&display=swap"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#F7F1E6",
+            paper: "#EFE6D6",
+            sand: "#D9CBB3",
+            ivory: "#FBF7F0",
+            ink: "#2A2218",
+            "ink-soft": "#5C4E3A",
+            "ink-mute": "#8A7A64",
+            gold: "#C4A035",
+            "gold-deep": "#9A7818",
+            "gold-soft": "#E8D48A",
+            terracotta: "#A44A2F",
+            cacao: "#241910",
+            wa: "#25D366",
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', "Georgia", "serif"],
+            sans: ["Figtree", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F7F1E6; color: #2A2218; font-family: Figtree, system-ui, sans-serif; }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: -0.02em; font-weight: 500; }
+    .site-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .site-bg__weave {
+      position: absolute; inset: 0;
+      background-image: url("https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/texture.jpg");
+      background-size: 640px; opacity: .07; mix-blend-mode: multiply;
+    }
+    .site-bg__greca {
+      position: absolute; inset: 0;
+      background-image: url("https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/patterns/andino.svg");
+      background-size: 168px; opacity: .085;
+    }
+    .site-shell { position: relative; z-index: 1; }
+    .eyebrow { font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #9A7818; }
+    .gold-rule { height: 1px; width: 3.5rem; background: #C4A035; }
+    .kafao-ribbon {
+      height: 3px; width: 100%;
+      background: linear-gradient(90deg, #e8c547 0%, #e07a28 12%, #c0392b 24%, #b44b8c 40%, #6b3fa0 55%, #2e6f9e 70%, #1a9b8a 85%, #3d9b6e 100%);
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+      min-height: 2.85rem; padding: .7rem 1.45rem; font-size: .78rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; border-radius: 999px; text-decoration: none;
+    }
+    .btn-gold { background: #C4A035; color: #241910; border: 1px solid #C4A035; }
+    .btn-gold:hover { background: #9A7818; border-color: #9A7818; color: #FBF7F0; }
+    .btn-outline-ivory { background: transparent; color: #FBF7F0; border: 1px solid rgba(251,247,240,.4); }
+    .btn-line { background: transparent; color: #241910; border: 1px solid #C4A035; }
+    .nav-link { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #5C4E3A; }
+    .nav-link:hover { color: #9A7818; }
+    .product-card__media { position: relative; display: block; overflow: hidden; border-radius: .9rem; background: #EFE6D6; aspect-ratio: 3/4; }
+    .product-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .product-card:hover img { transform: scale(1.045); }
+    .wearer-badge, .sale-badge {
+      position: absolute; top: .75rem; padding: .28rem .7rem; border-radius: 999px;
+      font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; z-index: 1;
+    }
+    .wearer-badge { right: .75rem; background: rgba(251,247,240,.92); color: #241910; }
+    .sale-badge { left: .75rem; background: #A44A2F; color: #FBF7F0; }
+    .campaign, .promo-banner { position: relative; min-height: 28rem; background: #241910; overflow: hidden; border-radius: 1.35rem; }
+    .campaign img, .promo-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .campaign__veil, .promo-banner__veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(36,25,16,.78), rgba(36,25,16,.2) 55%, rgba(36,25,16,.4)); }
+    .campaign__copy, .promo-banner__copy { position: relative; min-height: 28rem; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.2rem 1.6rem; }
+    .policy-card { background: #FBF7F0; border: 1px solid rgba(42,34,24,.08); border-radius: 1.1rem; padding: 1.6rem; }
+    .bank-card { background: #FBF7F0; border: 1px solid rgba(196,160,53,.35); border-radius: 1.1rem; padding: 1.8rem; margin-top: 1.5rem; }
+    .bank-grid { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .bank-grid { grid-template-columns: repeat(2, 1fr); } }
+    .field-label { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8A7A64; }
+    .field { width: 100%; margin-top: .35rem; padding: .75rem 1rem; border: 1px solid #D9CBB3; border-radius: .7rem; background: #FBF7F0; color: #2A2218; }
+    .contact-form { background: #FBF7F0; border: 1px solid rgba(42,34,24,.08); border-radius: 1.1rem; padding: 1.6rem; }
+    .site-footer { background: #241910; color: #FBF7F0; }
+    .footer-link { color: rgba(251,247,240,.75); }
+    .footer-link:hover { color: #E8D48A; }
+    .footer-social { display: flex; align-items: center; gap: .75rem; color: #FBF7F0; }
+    .wa-float {
+      position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 60;
+      width: 3.6rem; height: 3.6rem; border-radius: 999px; background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 24px -8px rgba(18,140,58,.7);
+    }
+    .lang-switch { display: inline-flex; overflow: hidden; border-radius: 999px; border: 1px solid rgba(42,34,24,.16); background: #FBF7F0; }
+    .lang-switch button { min-height: 2.5rem; min-width: 2.5rem; font-size: .68rem; font-weight: 700; letter-spacing: .16em; }
+    .lang-switch button[aria-pressed="true"] { background: #241910; color: #FBF7F0; }
+    .filter-pill { min-height: 2.5rem; padding: .4rem 1rem; border-radius: 999px; border: 1px solid rgba(42,34,24,.16); background: #FBF7F0; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #5C4E3A; }
+    .filter-pill.on { background: #241910; color: #FBF7F0; border-color: #241910; }
+    #menu-movil.open { max-height: 28rem; opacity: 1; }
+    .bank-wordmark img {
+      height: 28px !important;
+      width: auto !important;
+      max-width: 132px !important;
+      object-fit: contain !important;
+      display: block;
+    }
+    .logo-nav img {
+      height: 40px !important;
+      width: auto !important;
+      max-width: 150px !important;
+      object-fit: contain !important;
+      display: block;
+    }
+    @media (min-width: 640px) {
+      .logo-nav img { height: 46px !important; max-width: 170px !important; }
+    }
+    .logo-foot img {
+      height: 42px !important;
+      width: auto !important;
+      max-width: 160px !important;
+      object-fit: contain !important;
+      display: block;
+    }
+    .bank-account {
+      min-width: 16rem;
+      padding: 1.1rem 1.2rem;
+      border-radius: .9rem;
+      background: #F7F1E6;
+      border: 1px solid rgba(196,160,53,.28);
+    }
+  </style>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"><div class="site-bg__weave"></div><div class="site-bg__greca"></div></div>
+  <div class="site-shell">
+
+    <!-- SECCIÓN HEADER -->
+    <header class="sticky top-0 z-40 border-b border-sand/70 bg-ivory/92 backdrop-blur-md">
+      <div class="mx-auto flex h-[4.6rem] max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+        <a href="#inicio" class="logo-nav" aria-label="Kafao">
+          <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="150" height="59" style="height:40px;width:auto;max-width:150px;object-fit:contain;display:block"/>
+        </a>
+        <nav class="hidden items-center gap-7 lg:flex" aria-label="Principal">
+          <a href="#inicio" class="nav-link" data-i18n="nav.home">Inicio</a>
+          <a href="#catalogo" class="nav-link" data-i18n="nav.catalog">Catálogo</a>
+          <a href="#promociones" class="nav-link" data-i18n="nav.promo">Promociones</a>
+          <a href="#politicas" class="nav-link" data-i18n="nav.policies">Políticas</a>
+          <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <div class="lang-switch" role="group" aria-label="Idioma">
+            <button type="button" id="lang-es" aria-pressed="true">ES</button>
+            <button type="button" id="lang-en" aria-pressed="false">EN</button>
+          </div>
+          <a href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20prendas" target="_blank" rel="noreferrer" class="btn btn-gold hidden sm:inline-flex min-h-10 px-4">WhatsApp</a>
+          <button type="button" id="menu-btn" class="inline-flex size-11 items-center justify-center rounded-full border border-sand lg:hidden" aria-label="Abrir menú">☰</button>
+        </div>
+      </div>
+      <div id="menu-movil" class="lg:hidden max-h-0 overflow-hidden opacity-0 border-t border-sand bg-ivory transition-all">
+        <nav class="flex flex-col gap-1 px-6 py-5">
+          <a href="#inicio" class="font-display py-3 text-2xl" data-i18n="nav.home">Inicio</a>
+          <a href="#catalogo" class="font-display py-3 text-2xl" data-i18n="nav.catalog">Catálogo</a>
+          <a href="#promociones" class="font-display py-3 text-2xl" data-i18n="nav.promo">Promociones</a>
+          <a href="#politicas" class="font-display py-3 text-2xl" data-i18n="nav.policies">Políticas</a>
+          <a href="#contacto" class="font-display py-3 text-2xl" data-i18n="nav.contact">Contacto</a>
+        </nav>
+      </div>
+      <div class="kafao-ribbon" aria-hidden="true"></div>
+    </header>
+
+    <main id="contenido">
+      <!-- SECCIÓN HERO -->
+      <section id="inicio" class="relative isolate min-h-[calc(100svh-4.6rem)] overflow-hidden bg-cacao">
+        <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/hero.jpg" alt="Modelo Kafao en los Andes" class="absolute inset-0 size-full object-cover object-[center_20%]"/>
+        <div class="absolute inset-0 bg-gradient-to-r from-cacao/80 via-cacao/45 to-cacao/15"></div>
+        <div class="relative mx-auto flex min-h-[calc(100svh-4.6rem)] max-w-6xl flex-col justify-end px-4 py-16 sm:px-6 lg:justify-center">
+          <p class="eyebrow text-gold-soft" data-i18n="hero.eyebrow">Hecho a mano en los Andes ecuatorianos</p>
+          <div class="gold-rule my-5 bg-gold-soft"></div>
+          <h1 class="max-w-xl font-display text-[2.6rem] leading-[1.05] text-ivory sm:text-6xl lg:text-7xl" data-i18n="hero.title">Viste tu esencia étnica.</h1>
+          <p class="mt-5 max-w-md text-ivory/85 sm:text-lg" data-i18n="hero.sub">Ropa y Accesorios Artesanales de Ecuador.</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#coleccion" class="btn btn-gold" data-i18n="hero.cta">Ver Colección</a>
+            <a href="#contacto" class="btn btn-outline-ivory" data-i18n="hero.talk">Hablar con el atelier</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN CATÁLOGO DESCARGABLE -->
+      <section id="catalogo" class="py-20 sm:py-28">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="eyebrow" data-i18n="cat.kicker">01 · Septiembre 2026</p>
+          <div class="mt-10 grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="cat.title">Catálogo Colección Andes</h2>
+              <div class="gold-rule my-6"></div>
+              <p class="max-w-md text-ink-soft" data-i18n="cat.body">Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.</p>
+              <a href="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/catalogo-kafao.pdf" target="_blank" rel="noreferrer" class="btn btn-gold mt-8" data-i18n="cat.download">Descargar Catálogo Completo (PDF)</a>
+              <p class="mt-4 text-sm text-ink-mute" data-i18n="cat.note">Catálogo oficial, septiembre 2026. Precios en USD. Pedidos por WhatsApp.</p>
+            </div>
+            <figure class="overflow-hidden rounded-xl bg-[#f26522]">
+              <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/catalog-cover.jpg" alt="Portada del catálogo Kafao" class="aspect-[3/4] w-full object-cover"/>
+            </figure>
+          </div>
+          <div class="campaign mt-16">
+            <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/artesania-andes.jpg" alt="Artesanía Kafao"/>
+            <div class="campaign__veil"></div>
+            <div class="campaign__copy">
+              <p class="eyebrow text-gold-soft" data-i18n="cat.ck">Artesanías</p>
+              <p class="font-display mt-3 max-w-lg text-4xl text-ivory sm:text-5xl" data-i18n="cat.ct">Artesanías de Ecuador</p>
+              <p class="mt-4 max-w-md text-ivory/80" data-i18n="cat.cb">Cojines Saraguro, almohadillas Aya Huma, vírgenes quiteñas y más. Cada pieza nace en el taller de un artesano. En el catálogo están todas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN GALERÍA DE PRODUCTOS -->
+      <section id="coleccion" class="pb-20 sm:pb-28">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="eyebrow" data-i18n="gal.kicker">02 · Colección</p>
+          <div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="gal.title">Para ella y para él</h2>
+              <p class="mt-3 max-w-md text-ink-soft" data-i18n="gal.body">Una muestra del catálogo de septiembre. Toca una pieza para pedirla por WhatsApp.</p>
+            </div>
+            <div class="flex flex-wrap gap-2" id="filters">
+              <button class="filter-pill on" data-filter="all">Todos</button>
+              <button class="filter-pill" data-filter="mujer">Mujer</button>
+              <button class="filter-pill" data-filter="hombre">Hombre</button>
+              <button class="filter-pill" data-filter="buzos">Buzos</button>
+              <button class="filter-pill" data-filter="ponchos">Ponchos</button>
+              <button class="filter-pill" data-filter="artesanias">Artesanías</button>
+            </div>
+          </div>
+          <ul class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="products">
+            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Rojo-Vino"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/chompa-granada.jpg" alt="Buzo vino"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Rojo-Vino</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
+            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Negra"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/chompa-negra.jpg" alt="Buzo negro"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Negra</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
+            <li data-tags="unisex buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20Deportivo%20Azul"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/buzo-deportivo-azul.jpg" alt="Buzo azul"/><span class="sale-badge">Oferta</span><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo Deportivo Azul</h3><p class="mt-1 text-gold-deep">$18 <span class="text-sm text-ink-mute line-through">$22</span></p></a></li>
+            <li data-tags="unisex buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Camiseta%20Lux"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/camiseta-lux.jpg" alt="Camiseta Lux"/><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Camiseta Lux</h3><p class="mt-1 text-gold-deep">$17</p></a></li>
+            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Sobrecamisa%20Cafe"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/sobrecamisa-cafe.jpg" alt="Sobrecamisa Café"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Sobrecamisa Café</h3><p class="mt-1 text-gold-deep">$38</p></a></li>
+            <li data-tags="hombre ponchos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Poncho%20Urku"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/poncho-urku.jpg" alt="Poncho Urku"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Ponchos</p><h3 class="font-display mt-1 text-2xl">Poncho Urku</h3><p class="mt-1 text-gold-deep">$40</p></a></li>
+            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pantalon%20Manteno"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/pantalon-colibri.jpg" alt="Pantalón Manteño"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Pantalones</p><h3 class="font-display mt-1 text-2xl">Pantalón Manteño Celeste</h3><p class="mt-1 text-gold-deep">$38</p></a></li>
+            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pashmina%20Bordada%20Crema"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/pashmina-crema.jpg" alt="Pashmina"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Accesorios</p><h3 class="font-display mt-1 text-2xl">Pashmina Bordada Crema</h3><p class="mt-1 text-gold-deep">$20</p></a></li>
+            <li data-tags="unisex artesanias"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Almohadilla%20Aya%20Huma"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/almohadilla-ayahuma.jpg" alt="Aya Huma"/><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Ecuador · Artesanías</p><h3 class="font-display mt-1 text-2xl">Almohadilla de viaje Aya Huma</h3><p class="mt-1 text-gold-deep">$45</p></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECCIÓN PROMOCIONES -->
+      <section id="promociones" class="pb-20 sm:pb-28">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="eyebrow" data-i18n="promo.kicker">03 · Oferta</p>
+          <div class="promo-banner mt-10">
+            <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/promo-buzos.jpg" alt="Buzos Kafao"/>
+            <div class="promo-banner__veil"></div>
+            <div class="promo-banner__copy">
+              <p class="eyebrow text-gold-soft" data-i18n="promo.mark">Últimas unidades</p>
+              <h2 class="font-display mt-4 max-w-xl text-3xl text-ivory sm:text-5xl" data-i18n="promo.title">Últimas unidades en Buzos Deportivos Kafao. 20% de descuento.</h2>
+              <p class="mt-4 font-display text-2xl italic text-gold-soft" data-i18n="promo.body">Negro, azul y crema. Hasta agotar stock.</p>
+              <a href="#coleccion" class="btn btn-gold mt-8" data-i18n="promo.cta">Ver buzos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN POLÍTICAS DE VENTAS -->
+      <section id="politicas" class="pb-20 sm:pb-28">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="eyebrow" data-i18n="pol.kicker">04 · Atelier</p>
+          <h2 class="font-display mt-8 text-4xl text-ink sm:text-5xl" data-i18n="pol.title">Políticas de ventas</h2>
+          <p class="mt-3 max-w-lg text-ink-soft" data-i18n="pol.lead">Comprar a Kafao es tratar con el taller. Envíos, cambios y pagos, claros desde el primer mensaje.</p>
+          <ul class="mt-12 grid gap-5 md:grid-cols-3">
+            <li class="policy-card">
+              <h3 class="font-display text-2xl" data-i18n="pol.s1t">Envíos Seguros</h3>
+              <p class="mt-3 text-sm text-ink-soft" data-i18n="pol.s1b">Enviamos por Servientrega a todo Ecuador. El tiempo máximo de entrega es de 48 horas laborables. En compras mayores a $50 el envío no tiene costo.</p>
+            </li>
+            <li class="policy-card">
+              <h3 class="font-display text-2xl" data-i18n="pol.s2t">Política de Cambios</h3>
+              <p class="mt-3 text-sm text-ink-soft" data-i18n="pol.s2b">Tienes 15 días para cambiar talla o modelo, con la prenda en perfecto estado y su etiqueta. Escribe por WhatsApp y lo resolvemos.</p>
+            </li>
+            <li class="policy-card">
+              <h3 class="font-display text-2xl" data-i18n="pol.s3t">Métodos de Pago</h3>
+              <p class="mt-3 text-sm text-ink-soft" data-i18n="pol.s3b">Transferencia a Banco Pichincha o efectivo en Quito. El pedido se reserva con un abono.</p>
+            </li>
+          </ul>
+          <div class="bank-card">
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p class="eyebrow text-gold-deep" data-i18n="bank.title">Transferencias a Kafao</p>
+                <div class="bank-wordmark mt-4">
+                  <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="132" height="52" style="height:28px;width:auto;max-width:132px;object-fit:contain;display:block"/>
+                </div>
+                <p class="mt-3 max-w-sm text-sm text-ink-soft" data-i18n="bank.lead">Cuenta de ahorros Banco Pichincha. Copia el número al hacer el depósito.</p>
+              </div>
+              <div class="bank-account">
+                <p class="field-label text-gold-deep" data-i18n="bank.account">Número de cuenta</p>
+                <p class="font-display mt-1 text-3xl tracking-wide sm:text-4xl">2212708844</p>
+                <button type="button" id="copy-account" class="btn btn-line mt-3" data-i18n="bank.copy">Copiar número</button>
+              </div>
+            </div>
+            <dl class="bank-grid mt-8">
+              <div><dt class="field-label">Banco</dt><dd class="mt-1">Banco Pichincha</dd></div>
+              <div><dt class="field-label" data-i18n="bank.type">Tipo de cuenta</dt><dd class="mt-1">Cuenta de ahorros</dd></div>
+              <div><dt class="field-label" data-i18n="bank.holder">Titular</dt><dd class="mt-1">Jorge Ordoñez Merino</dd></div>
+              <div><dt class="field-label" data-i18n="bank.id">Cédula</dt><dd class="mt-1">1722807649</dd></div>
+              <div><dt class="field-label">Correo</dt><dd class="mt-1"><a href="mailto:tribukafao@gmail.com">tribukafao@gmail.com</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN CONTACTO -->
+      <section id="contacto" class="pb-20 sm:pb-28">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="eyebrow" data-i18n="co.kicker">05 · Conversemos</p>
+          <div class="mt-10 grid gap-10 lg:grid-cols-2">
+            <div>
+              <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="co.title">Contacto</h2>
+              <div class="gold-rule my-6"></div>
+              <p class="max-w-md text-ink-soft" data-i18n="co.note">Atelier y envíos desde Quito. Cada pedido se confirma a mano.</p>
+              <ul class="mt-8 space-y-4 text-ink">
+                <li>Quito - Ecuador</li>
+                <li data-i18n="co.hours">Lunes a sábado, 9:00 – 18:00</li>
+                <li><a href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20prendas" target="_blank" rel="noreferrer">+593 96 263 3333</a></li>
+                <li><a href="mailto:tribukafao@gmail.com">tribukafao@gmail.com</a></li>
+              </ul>
+            </div>
+            <form class="contact-form" id="kafao-form">
+              <h3 class="font-display text-2xl" data-i18n="co.form">Escribir al atelier</h3>
+              <p class="mt-1 text-sm text-ink-mute" data-i18n="co.formLead">Te respondemos por WhatsApp, el mismo día hábil.</p>
+              <label class="mt-6 block"><span class="field-label" data-i18n="co.name">Nombre</span><input class="field" type="text" name="nombre" placeholder="Tu nombre" required/></label>
+              <label class="mt-4 block"><span class="field-label" data-i18n="co.interest">Me interesa</span>
+                <select class="field" name="interes">
+                  <option value="información general sobre sus prendas">Información general</option>
+                  <option value="un poncho o ruana">Ponchos y ruanas</option>
+                  <option value="un buzo">Buzos</option>
+                  <option value="un pantalón">Pantalones</option>
+                  <option value="una pashmina">Pashminas y chales</option>
+                  <option value="una artesanía">Artesanías</option>
+                  <option value="un pedido al por mayor">Pedido al por mayor</option>
+                </select>
+              </label>
+              <label class="mt-4 block"><span class="field-label" data-i18n="co.msg">Mensaje</span><textarea class="field min-h-28" name="mensaje" rows="4" placeholder="Talla, color o fecha…"></textarea></label>
+              <button type="submit" class="btn btn-gold mt-6 w-full" data-i18n="co.send">Enviar por WhatsApp</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SECCIÓN FOOTER Y REDES SOCIALES -->
+    <footer class="site-footer">
+      <div class="kafao-ribbon" aria-hidden="true"></div>
+      <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3">
+        <div>
+          <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="160" height="63" class="logo-foot" style="height:42px;width:auto;max-width:160px;object-fit:contain;display:block"/>
+          <p class="mt-5 max-w-xs text-sm text-ivory/70" data-i18n="ft.blurb">Ropa y accesorios artesanales de Ecuador. Viste tu esencia étnica.</p>
+        </div>
+        <div>
+          <p class="eyebrow text-gold-soft" data-i18n="ft.nav">Navegación</p>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#inicio" class="footer-link" data-i18n="nav.home">Inicio</a></li>
+            <li><a href="#catalogo" class="footer-link" data-i18n="nav.catalog">Catálogo</a></li>
+            <li><a href="#promociones" class="footer-link" data-i18n="nav.promo">Promociones</a></li>
+            <li><a href="#politicas" class="footer-link" data-i18n="nav.policies">Políticas</a></li>
+            <li><a href="#contacto" class="footer-link" data-i18n="nav.contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow text-gold-soft" data-i18n="ft.socials">Redes y taller</p>
+          <ul class="mt-4 space-y-3">
+            <li><a href="https://www.instagram.com/kafaomitico" target="_blank" rel="noreferrer" class="footer-social"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="3.6"></circle><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Instagram · @kafaomitico</span></a></li>
+            <li><a href="https://www.tiktok.com/@kafao.mitico" target="_blank" rel="noreferrer" class="footer-social"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M14.2 3c.4 2.5 1.9 4.3 4.3 4.6v2.5c-1.46.14-2.8-.32-4.05-1.18v6.4c0 3.3-2.5 5.68-5.7 5.68A5.67 5.67 0 0 1 3 15.4c0-3.2 2.6-5.74 5.8-5.74.4 0 .8.04 1.18.12v2.62a3.1 3.1 0 0 0-1.18-.23 3.05 3.05 0 0 0-3.07 3.08 3.05 3.05 0 0 0 3.07 3.07c1.7 0 3.08-1.34 3.08-3.05V3h2.32Z"></path></svg><span>TikTok · kafao.mitico</span></a></li>
+            <li><a href="https://www.facebook.com/KafaoMitico" target="_blank" rel="noreferrer" class="footer-social"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-1c0-.6.4-1 1-1Z"></path></svg><span>Facebook · /Kafao Mítico</span></a></li>
+            <li><a href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20prendas" target="_blank" rel="noreferrer" class="footer-social">WhatsApp · +593 96 263 3333</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-ivory/10 px-4 py-5 text-center text-xs uppercase tracking-[0.16em] text-ivory/45">© 2026 Kafao · Hecho en Ecuador</div>
+    </footer>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20prendas" target="_blank" rel="noreferrer" class="wa-float" aria-label="WhatsApp">
+      <svg class="size-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.43 2.15 11.89c0 1.74.46 3.44 1.32 4.94L2 22l5.31-1.39a9.86 9.86 0 0 0 4.73 1.2h.01c5.46 0 9.89-4.43 9.89-9.89C22 6.43 17.5 2 12.04 2Zm5.72 14.05c-.24.67-1.4 1.23-1.94 1.3-.5.07-1.12.1-1.81-.11-.42-.13-.95-.31-1.64-.6-2.89-1.25-4.77-4.16-4.92-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.15.12.32.02.52-.1.2-.15.32-.29.5-.14.17-.3.39-.43.52-.14.14-.29.3-.12.58.16.29.73 1.2 1.56 1.95 1.08.96 1.98 1.26 2.27 1.4.29.14.46.12.63-.07.17-.2.73-.85.93-1.14.2-.29.39-.24.66-.14.27.1 1.72.81 2.02.96.29.14.49.22.56.34.07.13.07.74-.17 1.41Z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    const T = {
+      es: {
+        "nav.home":"Inicio","nav.catalog":"Catálogo","nav.promo":"Promociones","nav.policies":"Políticas","nav.contact":"Contacto",
+        "hero.eyebrow":"Hecho a mano en los Andes ecuatorianos","hero.title":"Viste tu esencia étnica.","hero.sub":"Ropa y Accesorios Artesanales de Ecuador.","hero.cta":"Ver Colección","hero.talk":"Hablar con el atelier",
+        "cat.kicker":"01 · Septiembre 2026","cat.title":"Catálogo Colección Andes","cat.body":"Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.","cat.download":"Descargar Catálogo Completo (PDF)","cat.note":"Catálogo oficial, septiembre 2026. Precios en USD. Pedidos por WhatsApp.","cat.ck":"Artesanías","cat.ct":"Artesanías de Ecuador","cat.cb":"Cojines Saraguro, almohadillas Aya Huma, vírgenes quiteñas y más. Cada pieza nace en el taller de un artesano. En el catálogo están todas.",
+        "gal.kicker":"02 · Colección","gal.title":"Para ella y para él","gal.body":"Una muestra del catálogo de septiembre. Toca una pieza para pedirla por WhatsApp.",
+        "promo.kicker":"03 · Oferta","promo.mark":"Últimas unidades","promo.title":"Últimas unidades en Buzos Deportivos Kafao. 20% de descuento.","promo.body":"Negro, azul y crema. Hasta agotar stock.","promo.cta":"Ver buzos",
+        "pol.kicker":"04 · Atelier","pol.title":"Políticas de ventas","pol.lead":"Comprar a Kafao es tratar con el taller. Envíos, cambios y pagos, claros desde el primer mensaje.","pol.s1t":"Envíos Seguros","pol.s1b":"Enviamos por Servientrega a todo Ecuador. El tiempo máximo de entrega es de 48 horas laborables. En compras mayores a $50 el envío no tiene costo.","pol.s2t":"Política de Cambios","pol.s2b":"Tienes 15 días para cambiar talla o modelo, con la prenda en perfecto estado y su etiqueta. Escribe por WhatsApp y lo resolvemos.","pol.s3t":"Métodos de Pago","pol.s3b":"Transferencia a Banco Pichincha o efectivo en Quito. El pedido se reserva con un abono.",
+        "bank.title":"Transferencias a Kafao","bank.lead":"Cuenta de ahorros Banco Pichincha. Copia el número al hacer el depósito.","bank.account":"Número de cuenta","bank.copy":"Copiar número","bank.type":"Tipo de cuenta","bank.holder":"Titular","bank.id":"Cédula",
+        "co.kicker":"05 · Conversemos","co.title":"Contacto","co.note":"Atelier y envíos desde Quito. Cada pedido se confirma a mano.","co.hours":"Lunes a sábado, 9:00 – 18:00","co.form":"Escribir al atelier","co.formLead":"Te respondemos por WhatsApp, el mismo día hábil.","co.name":"Nombre","co.interest":"Me interesa","co.msg":"Mensaje","co.send":"Enviar por WhatsApp",
+        "ft.blurb":"Ropa y accesorios artesanales de Ecuador. Viste tu esencia étnica.","ft.nav":"Navegación","ft.socials":"Redes y taller"
+      },
+      en: {
+        "nav.home":"Home","nav.catalog":"Catalog","nav.promo":"Offers","nav.policies":"Policies","nav.contact":"Contact",
+        "hero.eyebrow":"Handmade in the Ecuadorian Andes","hero.title":"Wear your ethnic essence.","hero.sub":"Artisan clothing and accessories from Ecuador.","hero.cta":"See the collection","hero.talk":"Talk to the atelier",
+        "cat.kicker":"01 · September 2026","cat.title":"Andes Collection Catalog","cat.body":"Hoodies, ponchos, trousers and crafts made by Ecuadorian artisans. This page shows a selection; the PDF has the full collection, with sizes and prices.","cat.download":"Download full catalog (PDF)","cat.note":"Official catalog, September 2026. Prices in USD. Orders via WhatsApp.","cat.ck":"Crafts","cat.ct":"Crafts from Ecuador","cat.cb":"Saraguro cushions, Aya Huma travel pillows, Quito virgins and more. Each piece is born in an artisan's workshop. The catalog has them all.",
+        "gal.kicker":"02 · Collection","gal.title":"For her and for him","gal.body":"A sample from the September catalog. Tap a piece to order on WhatsApp.",
+        "promo.kicker":"03 · Offer","promo.mark":"Last units","promo.title":"Last units of Kafao sweatshirts. 20% off.","promo.body":"Black, blue and cream. While stocks last.","promo.cta":"See sweatshirts",
+        "pol.kicker":"04 · Atelier","pol.title":"Sales policies","pol.lead":"Buying from Kafao means dealing with the workshop. Shipping, exchanges and payments, clear from the first message.","pol.s1t":"Secure shipping","pol.s1b":"We ship with Servientrega across Ecuador. Delivery takes at most 48 business hours. Free shipping on orders over $50.","pol.s2t":"Exchange policy","pol.s2b":"You have 15 days to exchange size or model, with the garment in perfect condition and its tag. Write on WhatsApp and we will sort it.","pol.s3t":"Payment methods","pol.s3b":"Bank transfer to Banco Pichincha or cash in Quito. Orders are reserved with a deposit.",
+        "bank.title":"Transfers to Kafao","bank.lead":"Banco Pichincha savings account. Copy the number when you deposit.","bank.account":"Account number","bank.copy":"Copy number","bank.type":"Account type","bank.holder":"Account holder","bank.id":"ID",
+        "co.kicker":"05 · Let's talk","co.title":"Contact","co.note":"Atelier and shipping from Quito. Every order is confirmed by hand.","co.hours":"Monday to Saturday, 9:00 – 18:00","co.form":"Write to the atelier","co.formLead":"We reply on WhatsApp the same business day.","co.name":"Name","co.interest":"I'm interested in","co.msg":"Message","co.send":"Send on WhatsApp",
+        "ft.blurb":"Artisan clothing and accessories from Ecuador. Wear your ethnic essence.","ft.nav":"Navigation","ft.socials":"Social and workshop"
+      }
+    };
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const k = el.getAttribute("data-i18n");
+        if (T[lang][k]) el.textContent = T[lang][k];
+      });
+      document.getElementById("lang-es").setAttribute("aria-pressed", lang === "es" ? "true" : "false");
+      document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+    }
+    document.getElementById("lang-es").onclick = () => setLang("es");
+    document.getElementById("lang-en").onclick = () => setLang("en");
+    document.getElementById("menu-btn").onclick = () => document.getElementById("menu-movil").classList.toggle("open");
+    document.querySelectorAll("#menu-movil a").forEach((a) => a.onclick = () => document.getElementById("menu-movil").classList.remove("open"));
+    document.getElementById("copy-account").onclick = async function () {
+      try { await navigator.clipboard.writeText("2212708844"); this.textContent = "Copiado"; }
+      catch { this.textContent = "2212708844"; }
+    };
+    document.getElementById("kafao-form").onsubmit = function (e) {
+      e.preventDefault();
+      const fd = new FormData(this);
+      const name = fd.get("nombre") || "";
+      const topic = fd.get("interes") || "";
+      const extra = fd.get("mensaje") || "";
+      const msg = extra
+        ? `Hola Kafao, soy ${name}. Quiero información sobre ${topic}. ${extra}`
+        : `Hola Kafao, soy ${name}. Quiero información sobre ${topic}.`;
+      window.open("https://wa.me/593962633333?text=" + encodeURIComponent(msg), "_blank");
+    };
+    document.getElementById("filters").onclick = function (e) {
+      const btn = e.target.closest("[data-filter]");
+      if (!btn) return;
+      document.querySelectorAll("#filters .filter-pill").forEach((b) => b.classList.toggle("on", b === btn));
+      const f = btn.dataset.filter;
+      document.querySelectorAll("#products li").forEach((li) => {
+        li.classList.toggle("hidden-card", f !== "all" && !(li.dataset.tags || "").includes(f));
+      });
+    };
+  </script>
+</body>
+</html>
