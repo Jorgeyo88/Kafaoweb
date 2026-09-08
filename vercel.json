@@ -1,0 +1,3 @@
+{
+  "buildCommand": "node scripts/with-app-env.mjs vite build"
+}
