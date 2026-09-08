@@ -1,3 +1,5 @@
 {
-  "buildCommand": "node scripts/with-app-env.mjs vite build"
+  "buildCommand": "rm -rf .vercel/output/functions .vercel/output/nitro.json && echo static-ok",
+  "installCommand": "echo skip-install",
+  "outputDirectory": ".vercel/output/static"
 }
