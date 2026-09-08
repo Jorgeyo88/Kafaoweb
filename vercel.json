@@ -1,5 +1,5 @@
 {
   "installCommand": "echo skip-install",
-  "buildCommand": "mkdir -p dist && cp docs/index.html dist/index.html",
+  "buildCommand": "mkdir -p dist/images && cp docs/index.html dist/index.html && cp -r public/images/. dist/images/ && cp public/logo.png dist/logo.png && cp public/catalogo-kafao.pdf dist/catalogo-kafao.pdf && cp public/favicon.svg dist/favicon.svg",
   "outputDirectory": "dist"
 }

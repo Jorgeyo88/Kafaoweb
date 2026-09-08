@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "node scripts/with-app-env.mjs vite dev --host 0.0.0.0 --port 8080",
-    "build": "mkdir -p dist && cp docs/index.html dist/index.html",
+    "build": "mkdir -p dist/images && cp docs/index.html dist/index.html && cp -r public/images/. dist/images/",
     "db:migrate": "node scripts/migrate.mjs",
     "build:dev": "node scripts/with-app-env.mjs vite build --mode development",
     "preview": "node scripts/with-app-env.mjs vite preview",
