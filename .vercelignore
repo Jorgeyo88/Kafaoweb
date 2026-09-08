@@ -1,0 +1,10 @@
+.vercel
+node_modules
+.grok
+artifacts
+screenshots
+attachments
+src
+server
+scripts
+migrations

@@ -1,15 +1,5 @@
 {
-  "buildCommand": "rm -rf .vercel/output/functions .vercel/output/nitro.json && echo static-ok",
   "installCommand": "echo skip-install",
-  "outputDirectory": ".vercel/output/static",
-  "headers": [
-    {
-      "source": "/",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
-    },
-    {
-      "source": "/index.html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
-    }
-  ]
+  "buildCommand": "mkdir -p dist && cp docs/index.html dist/index.html",
+  "outputDirectory": "dist"
 }
