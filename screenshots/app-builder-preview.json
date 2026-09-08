@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Kafao · Ropa artesanal de Ecuador",
+      "hasCanvas": false,
+      "bodyTextLen": 2916,
+      "bodyTextHash": "929e4deb01a4ade9a57c35e35ca56ca50f144d18d9c0f780aa694dba7a1a42b3",
+      "bodyTextPrefix": "SALTAR AL CONTENIDO INICIO CATÁLOGO PROMOCIONES POLÍTICAS CONTAC",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Kafao · Ropa artesanal de Ecuador",
+      "hasCanvas": false,
+      "bodyTextLen": 2916,
+      "bodyTextHash": "08bb8dece753e4c5f525a4211ca670ac60e24d28b58a87f977f8a34232d154d4",
+      "bodyTextPrefix": "SALTAR AL CONTENIDO ES EN Inicio Catálogo Promociones Políticas ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

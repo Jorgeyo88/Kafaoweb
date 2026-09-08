@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <!-- Patrón geométrico andino (inspirado en grecas y rombos de Otavalo). Se usa a baja opacidad. -->
+  <g fill="none" stroke="#A44A2F" stroke-width="1.15">
+    <path d="M80 8 L152 80 L80 152 L8 80 Z"/>
+    <path d="M80 32 L128 80 L80 128 L32 80 Z"/>
+    <path d="M80 56 L104 80 L80 104 L56 80 Z"/>
+  </g>
+  <g fill="none" stroke="#C4A035" stroke-width="0.8">
+    <path d="M0 80 H160 M80 0 V160"/>
+    <path d="M80 68 L92 80 L80 92 L68 80 Z"/>
+  </g>
+  <!-- Chakana pequeña en las esquinas para que el mosaico conecte -->
+  <g fill="#A44A2F">
+    <rect x="77" y="77" width="6" height="6"/>
+    <path d="M0 0 H18 V6 H6 V18 H0 Z"/>
+    <path d="M142 0 H160 V18 H154 V6 H142 Z"/>
+    <path d="M0 142 H6 V154 H18 V160 H0 Z"/>
+    <path d="M154 142 H160 V160 H142 V154 H154 Z"/>
+  </g>
+</svg>

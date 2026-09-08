@@ -1,0 +1,843 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   KAFAO — tokens de marca
+   Paleta: crema, cacao, oro del logo, terracota andina.
+   Tipografías: Cormorant Garamond (títulos) + Figtree (cuerpo).
+   ===================================================================== */
+
+@theme {
+  --font-display: "Cormorant Garamond", "Liberation Serif", ui-serif, Georgia, serif;
+  --font-sans: "Figtree", "Liberation Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #f7f1e6;
+  --color-paper: #efe6d6;
+  --color-sand: #d9cbb3;
+  --color-ivory: #fbf7f0;
+  --color-ink: #2a2218;
+  --color-ink-soft: #5c4e3a;
+  --color-ink-mute: #8a7a64;
+  --color-gold: #c4a035;
+  --color-gold-deep: #9a7818;
+  --color-gold-soft: #e8d48a;
+  --color-terracotta: #a44a2f;
+  --color-terracotta-deep: #7c3420;
+  --color-cacao: #241910;
+  --color-cacao-soft: #3a2a1c;
+  --color-wa: #25d366;
+  --color-wa-deep: #128c3a;
+  --color-wa-fg: #f4fff8;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.9rem;
+  --radius-xl: 1.35rem;
+
+  --shadow-card: 0 18px 40px -28px rgb(42 34 24 / 0.45);
+  --shadow-border:
+    0 0 0 1px rgb(42 34 24 / 0.08),
+    0 1px 2px -1px rgb(42 34 24 / 0.06),
+    0 8px 24px -16px rgb(42 34 24 / 0.28);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-weight: 500;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-gold-soft);
+    color: var(--color-cacao);
+  }
+}
+
+/* Fondo andino: tejido fotográfico + greca geométrica, ambos muy sutiles. */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.site-bg__weave {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/texture.jpg");
+  background-size: 640px;
+  background-repeat: repeat;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+.site-bg__greca {
+  position: absolute;
+  inset: 0;
+  background-image: url("/patterns/andino.svg");
+  background-size: 168px;
+  background-repeat: repeat;
+  opacity: 0.085;
+}
+
+.site-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  scroll-margin-top: 5.6rem;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+}
+
+.gold-rule {
+  height: 1px;
+  width: 3.5rem;
+  background: var(--color-gold);
+}
+
+/* Cinta de las llaves del logo — 3px, firma de marca. */
+.kafao-ribbon {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #e8c547 0%,
+    #e07a28 12%,
+    #c0392b 24%,
+    #b44b8c 40%,
+    #6b3fa0 55%,
+    #2e6f9e 70%,
+    #1a9b8a 85%,
+    #3d9b6e 100%
+  );
+}
+
+.section-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.section-mark__rule {
+  width: 2.4rem;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+.section-mark__diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 70;
+  padding: 0.6rem 1rem;
+  background: var(--color-cacao);
+  color: var(--color-ivory);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Botón de marca */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 150ms ease,
+    box-shadow 180ms ease;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-cacao);
+  border: 1px solid var(--color-gold);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-deep);
+  border-color: var(--color-gold-deep);
+  color: var(--color-ivory);
+}
+
+.btn-ivory {
+  background: var(--color-ivory);
+  color: var(--color-cacao);
+  border: 1px solid var(--color-ivory);
+}
+
+.btn-ivory:hover {
+  background: var(--color-cream);
+}
+
+.btn-line {
+  background: transparent;
+  color: var(--color-cacao);
+  border: 1px solid color-mix(in oklab, var(--color-gold) 55%, var(--color-cacao) 20%);
+}
+
+.btn-line:hover {
+  background: var(--color-gold);
+  color: var(--color-cacao);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 22%, transparent);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-deep);
+}
+
+.btn-outline-ivory {
+  background: transparent;
+  color: var(--color-ivory);
+  border: 1px solid color-mix(in oklab, var(--color-ivory) 40%, transparent);
+}
+
+.btn-outline-ivory:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-soft);
+}
+
+/* Portada de catálogo */
+.catalog-cover {
+  position: relative;
+}
+
+.catalog-cover__caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 5rem 1.5rem 1.4rem;
+  background: linear-gradient(
+    to top,
+    rgb(36 25 16 / 0.94) 0%,
+    rgb(36 25 16 / 0.55) 55%,
+    transparent 100%
+  );
+}
+
+/* Campaña Detalles que enamoran */
+.campaign {
+  position: relative;
+  min-height: 28rem;
+  background: var(--color-cacao);
+}
+
+.campaign img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.campaign__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgb(36 25 16 / 0.78) 0%, rgb(36 25 16 / 0.15) 48%, rgb(36 25 16 / 0.35) 100%);
+}
+
+.campaign__copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-height: 28rem;
+  padding: 2.2rem 1.4rem 2.2rem;
+}
+
+@media (min-width: 640px) {
+  .campaign__copy {
+    padding: 3rem 3rem 2.8rem;
+    min-height: 32rem;
+  }
+  .campaign {
+    min-height: 32rem;
+  }
+}
+
+.wearer-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(251 247 240 / 0.92);
+  color: var(--color-cacao);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Filtros de galería */
+.filter-pill {
+  min-height: 2.75rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+  background: var(--color-ivory);
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-deep);
+}
+
+.filter-pill--on {
+  background: var(--color-cacao);
+  border-color: var(--color-cacao);
+  color: var(--color-ivory);
+}
+
+/* Interruptor de idioma ES / EN */
+.lang-switch {
+  display: inline-flex;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+  background: var(--color-ivory);
+}
+
+.lang-switch button {
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0 0.65rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .lang-switch button {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0 0.75rem;
+  }
+}
+
+.lang-switch button[aria-pressed="true"] {
+  background: var(--color-cacao);
+  color: var(--color-ivory);
+}
+
+.lang-switch button:hover:not([aria-pressed="true"]) {
+  color: var(--color-gold-deep);
+}
+
+/* Tarjeta de producto */
+.product-card {
+  display: block;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.product-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: var(--color-paper);
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-border);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  outline: 1px solid rgb(42 34 24 / 0.08);
+  outline-offset: -1px;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.product-card:hover img,
+.product-card:focus-visible img {
+  transform: scale(1.045);
+}
+
+.product-card__hint {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1rem 0.95rem;
+  background: linear-gradient(to top, rgb(36 25 16 / 0.72), transparent);
+  color: var(--color-ivory);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.product-card:hover .product-card__hint,
+.product-card:focus-visible .product-card__hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sale-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: var(--color-terracotta);
+  color: var(--color-ivory);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Diálogo de prenda */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgb(36 25 16 / 0.58);
+  backdrop-filter: blur(2px);
+}
+
+.dialog-overlay[data-state="open"] {
+  animation: fade-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dialog-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 51;
+  width: min(52rem, calc(100% - 1.25rem));
+  max-height: min(42rem, calc(100svh - 1.5rem));
+  overflow: auto;
+  transform: translate(-50%, -50%);
+  background: var(--color-ivory);
+  border-radius: 1.35rem;
+  box-shadow: 0 24px 60px -28px rgb(36 25 16 / 0.7);
+}
+
+.dialog-content[data-state="open"] {
+  animation: dialog-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 0;
+  background: rgb(251 247 240 / 0.92);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-border);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Promoción */
+.promo-banner {
+  position: relative;
+  min-height: 28rem;
+  background: var(--color-cacao);
+}
+
+.promo-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.promo-banner__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(36 25 16 / 0.88) 0%, rgb(36 25 16 / 0.55) 48%, rgb(36 25 16 / 0.28) 100%),
+    linear-gradient(to top, rgb(36 25 16 / 0.5), transparent 45%);
+}
+
+.promo-banner__copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-height: 28rem;
+  padding: 2.2rem 1.4rem 2.4rem;
+}
+
+@media (min-width: 640px) {
+  .promo-banner__copy {
+    padding: 3rem 3rem 3.2rem;
+  }
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.2rem;
+  padding: 0.7rem 0.8rem 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--color-ivory) 18%, transparent);
+  border-radius: 0.5rem;
+  background: rgb(36 25 16 / 0.35);
+}
+
+.time-box .time-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-ivory) 60%, transparent);
+}
+
+/* Políticas */
+.policy-card {
+  background: var(--color-ivory);
+  border-radius: 1.35rem;
+  padding: 1.6rem 1.5rem 1.7rem;
+  box-shadow: var(--shadow-border);
+}
+
+.policy-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: var(--color-paper);
+  color: var(--color-gold-deep);
+}
+
+.bank-card {
+  background: var(--color-ivory);
+  border-radius: 1.35rem;
+  padding: 1.7rem 1.5rem 1.8rem;
+  box-shadow: var(--shadow-border);
+}
+
+@media (min-width: 640px) {
+  .bank-card {
+    padding: 2rem 2rem 2.1rem;
+  }
+}
+
+.bank-account {
+  border: 1px solid color-mix(in oklab, var(--color-gold) 45%, transparent);
+  background: color-mix(in oklab, var(--color-paper) 70%, var(--color-ivory));
+  border-radius: 1rem;
+  padding: 1.1rem 1.2rem 1.2rem;
+}
+
+.bank-grid {
+  display: grid;
+  gap: 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .bank-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Contacto */
+.contact-form {
+  background: var(--color-ivory);
+  border-radius: 1.35rem;
+  padding: 1.6rem 1.4rem 1.7rem;
+  box-shadow: var(--shadow-border);
+}
+
+@media (min-width: 640px) {
+  .contact-form {
+    padding: 2rem 1.8rem 2.1rem;
+  }
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+}
+
+.field {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+  border-radius: 0.5rem;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.field:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--color-cacao);
+  color: var(--color-ivory);
+  padding-bottom: 4.5rem;
+}
+
+.footer-link {
+  color: color-mix(in oklab, var(--color-ivory) 78%, transparent);
+  font-size: 0.95rem;
+  transition: color 150ms ease;
+}
+
+.footer-link:hover {
+  color: var(--color-gold-soft);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  color: var(--color-ivory);
+  transition: color 150ms ease;
+}
+
+.footer-social:hover {
+  color: var(--color-gold-soft);
+}
+
+/* WhatsApp flotante */
+.wa-float {
+  position: fixed;
+  right: max(1.1rem, env(safe-area-inset-right));
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.65rem;
+  height: 3.65rem;
+  border-radius: 999px;
+  background: var(--color-wa);
+  color: var(--color-wa-fg);
+  box-shadow: 0 12px 28px -10px rgb(18 140 58 / 0.75);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.wa-float:hover {
+  background: var(--color-wa-deep);
+  transform: scale(1.05);
+}
+
+.wa-float:active {
+  transform: scale(0.96);
+}
+
+.wa-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--color-wa);
+  animation: wa-pulse 2.4s ease-out infinite;
+}
+
+.wa-float__tip {
+  position: absolute;
+  right: calc(100% + 0.65rem);
+  white-space: nowrap;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--color-cacao);
+  color: var(--color-ivory);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.wa-float:hover .wa-float__tip,
+.wa-float:focus-visible .wa-float__tip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes wa-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  to {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .product-card img,
+  .product-card__hint,
+  .hero-copy > *,
+  .wa-float,
+  .wa-float::after,
+  .filter-pill,
+  .dialog-overlay,
+  .dialog-content {
+    transition: none !important;
+    animation: none !important;
+  }
+}
