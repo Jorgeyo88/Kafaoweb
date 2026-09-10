@@ -48,7 +48,7 @@
     .site-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     .site-bg__weave {
       position: absolute; inset: 0;
-      background-image: url("https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/texture.jpg");
+      background-image: url("images/texture.jpg");
       background-size: 640px; opacity: .07; mix-blend-mode: multiply;
     }
     .site-bg__greca {
@@ -151,7 +151,7 @@
     <header class="sticky top-0 z-40 border-b border-sand/70 bg-ivory/92 backdrop-blur-md">
       <div class="mx-auto flex h-[4.6rem] max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <a href="#inicio" class="logo-nav" aria-label="Kafao">
-          <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="150" height="59" style="height:40px;width:auto;max-width:150px;object-fit:contain;display:block"/>
+          <img src="logo.png" alt="Kafao" width="150" height="59" style="height:40px;width:auto;max-width:150px;object-fit:contain;display:block"/>
         </a>
         <nav class="hidden items-center gap-7 lg:flex" aria-label="Principal">
           <a href="#inicio" class="nav-link" data-i18n="nav.home">Inicio</a>
@@ -207,15 +207,15 @@
               <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="cat.title">Catálogo Colección Andes</h2>
               <div class="gold-rule my-6"></div>
               <p class="max-w-md text-ink-soft" data-i18n="cat.body">Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.</p>
-              <a href="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/catalogo-kafao.pdf" target="_blank" rel="noreferrer" class="btn btn-gold mt-8" data-i18n="cat.download">Descargar Catálogo Completo (PDF)</a>
+              <a href="catalogo-kafao.pdf" target="_blank" rel="noreferrer" class="btn btn-gold mt-8" data-i18n="cat.download">Descargar Catálogo Completo (PDF)</a>
               <p class="mt-4 text-sm text-ink-mute" data-i18n="cat.note">Catálogo oficial, septiembre 2026. Precios en USD. Pedidos por WhatsApp.</p>
             </div>
             <figure class="overflow-hidden rounded-xl bg-[#f26522]">
-              <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/catalog-cover.jpg" alt="Portada del catálogo Kafao" class="aspect-[3/4] w-full object-cover"/>
+              <img src="images/catalog-cover.jpg" alt="Portada del catálogo Kafao" class="aspect-[3/4] w-full object-cover"/>
             </figure>
           </div>
           <div class="campaign mt-16">
-            <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/artesania-andes.jpg" alt="Artesanía Kafao"/>
+            <img src="images/artesania-andes.jpg?v=2" alt="Artesanía Kafao"/>
             <div class="campaign__veil"></div>
             <div class="campaign__copy">
               <p class="eyebrow text-gold-soft" data-i18n="cat.ck">Artesanías</p>
@@ -245,15 +245,15 @@
             </div>
           </div>
           <ul class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="products">
-            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Rojo-Vino"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/chompa-granada.jpg" alt="Buzo vino"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Rojo-Vino</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
-            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Negra"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/chompa-negra.jpg" alt="Buzo negro"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Negra</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
-            <li data-tags="unisex buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20Deportivo%20Azul"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/buzo-deportivo-azul.jpg" alt="Buzo azul"/><span class="sale-badge">Oferta</span><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo Deportivo Azul</h3><p class="mt-1 text-gold-deep">$18 <span class="text-sm text-ink-mute line-through">$22</span></p></a></li>
+            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Rojo-Vino"><span class="product-card__media"><img src="images/chompa-granada.jpg" alt="Buzo vino"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Rojo-Vino</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
+            <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20con%20Capucha%20Negra"><span class="product-card__media"><img src="images/chompa-negra.jpg" alt="Buzo negro"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo con Capucha Negra</h3><p class="mt-1 text-gold-deep">$25</p></a></li>
+            <li data-tags="unisex buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Buzo%20Deportivo%20Azul"><span class="product-card__media"><img src="images/buzo-deportivo-azul.jpg" alt="Buzo azul"/><span class="sale-badge">Oferta</span><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Buzo Deportivo Azul</h3><p class="mt-1 text-gold-deep">$18 <span class="text-sm text-ink-mute line-through">$22</span></p></a></li>
             <li data-tags="unisex buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Camiseta%20Lux"><span class="product-card__media"><img src="images/camiseta-lux.jpg?v=2" alt="Camiseta Lux"/><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Camiseta Lux</h3><p class="mt-1 text-gold-deep">$17</p></a></li>
             <li data-tags="hombre buzos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Sobrecamisa%20Cafe"><span class="product-card__media"><img src="images/sobrecamisa-cafe.jpg" alt="Sobrecamisa Café"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Buzos</p><h3 class="font-display mt-1 text-2xl">Sobrecamisa Café</h3><p class="mt-1 text-gold-deep">$38</p></a></li>
-            <li data-tags="hombre ponchos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Poncho%20Urku"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/poncho-urku.jpg" alt="Poncho Urku"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Ponchos</p><h3 class="font-display mt-1 text-2xl">Poncho Urku</h3><p class="mt-1 text-gold-deep">$40</p></a></li>
-            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pantalon%20Manteno"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/pantalon-colibri.jpg" alt="Pantalón Manteño"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Pantalones</p><h3 class="font-display mt-1 text-2xl">Pantalón Manteño Celeste</h3><p class="mt-1 text-gold-deep">$38</p></a></li>
-            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pashmina%20Bordada%20Crema"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/pashmina-crema.jpg" alt="Pashmina"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Accesorios</p><h3 class="font-display mt-1 text-2xl">Pashmina Bordada Crema</h3><p class="mt-1 text-gold-deep">$20</p></a></li>
-            <li data-tags="unisex artesanias"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Almohadilla%20Aya%20Huma"><span class="product-card__media"><img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/almohadilla-ayahuma.jpg" alt="Aya Huma"/><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Ecuador · Artesanías</p><h3 class="font-display mt-1 text-2xl">Almohadilla de viaje Aya Huma</h3><p class="mt-1 text-gold-deep">$45</p></a></li>
+            <li data-tags="hombre ponchos"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Poncho%20Urku"><span class="product-card__media"><img src="images/poncho-urku.jpg" alt="Poncho Urku"/><span class="wearer-badge">Hombre</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Ponchos</p><h3 class="font-display mt-1 text-2xl">Poncho Urku</h3><p class="mt-1 text-gold-deep">$40</p></a></li>
+            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pantalon%20Manteno"><span class="product-card__media"><img src="images/pantalon-colibri.jpg" alt="Pantalón Manteño"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Quito · Pantalones</p><h3 class="font-display mt-1 text-2xl">Pantalón Manteño Celeste</h3><p class="mt-1 text-gold-deep">$38</p></a></li>
+            <li data-tags="mujer"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Pashmina%20Bordada%20Crema"><span class="product-card__media"><img src="images/pashmina-crema.jpg" alt="Pashmina"/><span class="wearer-badge">Mujer</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Andes · Accesorios</p><h3 class="font-display mt-1 text-2xl">Pashmina Bordada Crema</h3><p class="mt-1 text-gold-deep">$20</p></a></li>
+            <li data-tags="unisex artesanias"><a class="product-card block" href="https://wa.me/593962633333?text=Hola%20Kafao%2C%20me%20interesa%20Almohadilla%20Aya%20Huma"><span class="product-card__media"><img src="images/almohadilla-ayahuma.jpg" alt="Aya Huma"/><span class="wearer-badge">Unisex</span></span><p class="mt-4 text-xs tracking-[0.18em] text-ink-mute uppercase">Ecuador · Artesanías</p><h3 class="font-display mt-1 text-2xl">Almohadilla de viaje Aya Huma</h3><p class="mt-1 text-gold-deep">$45</p></a></li>
           </ul>
         </div>
       </section>
@@ -263,7 +263,7 @@
         <div class="mx-auto max-w-6xl px-4 sm:px-6">
           <p class="eyebrow" data-i18n="promo.kicker">03 · Oferta</p>
           <div class="promo-banner mt-10">
-            <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/images/promo-buzos.jpg" alt="Buzos Kafao"/>
+            <img src="images/promo-buzos.jpg" alt="Buzos Kafao"/>
             <div class="promo-banner__veil"></div>
             <div class="promo-banner__copy">
               <p class="eyebrow text-gold-soft" data-i18n="promo.mark">Últimas unidades</p>
@@ -300,7 +300,7 @@
               <div>
                 <p class="eyebrow text-gold-deep" data-i18n="bank.title">Transferencias a Kafao</p>
                 <div class="bank-wordmark mt-4">
-                  <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="132" height="52" style="height:28px;width:auto;max-width:132px;object-fit:contain;display:block"/>
+                  <img src="logo.png" alt="Kafao" width="132" height="52" style="height:28px;width:auto;max-width:132px;object-fit:contain;display:block"/>
                 </div>
                 <p class="mt-3 max-w-sm text-sm text-ink-soft" data-i18n="bank.lead">Cuenta de ahorros Banco Pichincha. Copia el número al hacer el depósito.</p>
               </div>
@@ -365,7 +365,7 @@
       <div class="kafao-ribbon" aria-hidden="true"></div>
       <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3">
         <div>
-          <img src="https://cdn.jsdelivr.net/gh/Jorgeyo88/Kafaoweb@main/public/logo.png" alt="Kafao" width="160" height="63" class="logo-foot" style="height:42px;width:auto;max-width:160px;object-fit:contain;display:block"/>
+          <img src="logo.png" alt="Kafao" width="160" height="63" class="logo-foot" style="height:42px;width:auto;max-width:160px;object-fit:contain;display:block"/>
           <p class="mt-5 max-w-xs text-sm text-ivory/70" data-i18n="ft.blurb">Ropa y accesorios artesanales de Ecuador. Viste tu esencia étnica.</p>
         </div>
         <div>
