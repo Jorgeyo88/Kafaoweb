@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kafaoweb.vercel.app/sitemap.xml
