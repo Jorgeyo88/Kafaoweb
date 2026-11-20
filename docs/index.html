@@ -141,6 +141,51 @@
       background: #F7F1E6;
       border: 1px solid rgba(196,160,53,.28);
     }
+    .catalog-viewer {
+      position: relative;
+      background: #172433;
+      border-radius: 1rem;
+      padding: .85rem 3.1rem 2.75rem;
+    }
+    .catalog-stage {
+      min-height: 16rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .catalog-stage canvas {
+      width: 100%;
+      height: auto;
+      border-radius: .35rem;
+      background: #0e1822;
+      box-shadow: 0 16px 40px -24px rgba(0,0,0,.7);
+    }
+    .catalog-nav {
+      position: absolute;
+      top: 46%;
+      z-index: 2;
+      width: 2.55rem;
+      height: 2.55rem;
+      border-radius: 999px;
+      border: 1px solid #C4A035;
+      background: #FBF7F0;
+      color: #241910;
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+    .catalog-nav:disabled { opacity: .35; }
+    .catalog-nav--prev { left: .45rem; }
+    .catalog-nav--next { right: .45rem; }
+    .catalog-count, .catalog-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #E8D48A;
+    }
+    .catalog-count { bottom: 1.35rem; font-size: .75rem; letter-spacing: .18em; }
+    .catalog-hint { bottom: .45rem; font-size: .68rem; letter-spacing: .04em; color: rgba(232,212,138,.75); }
+    .catalog-status { color: #E8D48A; font-size: .85rem; text-align: center; padding: 2.5rem 1rem; }
   </style>
 </head>
 <body>
@@ -201,17 +246,24 @@
       <!-- SECCIÓN CATÁLOGO DESCARGABLE -->
       <section id="catalogo" class="py-20 sm:py-28">
         <div class="mx-auto max-w-6xl px-4 sm:px-6">
-          <p class="eyebrow" data-i18n="cat.kicker">01 · Octubre 2026</p>
+          <p class="eyebrow" data-i18n="cat.kicker">01 · Noviembre – Diciembre 2026</p>
           <div class="mt-10 grid items-center gap-10 lg:grid-cols-2">
             <div>
               <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="cat.title">Catálogo Colección Andes</h2>
               <div class="gold-rule my-6"></div>
               <p class="max-w-md text-ink-soft" data-i18n="cat.body">Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.</p>
-              <a href="catalogo-kafao.pdf" target="_blank" rel="noreferrer" class="btn btn-gold mt-8" data-i18n="cat.download">Descargar Catálogo Completo (PDF)</a>
-              <p class="mt-4 text-sm text-ink-mute" data-i18n="cat.note">Catálogo oficial, octubre 2026. Precios en USD. Pedidos por WhatsApp.</p>
+              <a href="catalogo-kafao.pdf?v=novdic" target="_blank" rel="noreferrer" class="btn btn-gold mt-8" data-i18n="cat.download">Descargar Catálogo Completo (PDF)</a>
+              <p class="mt-4 text-sm text-ink-mute" data-i18n="cat.note">Catálogo oficial, noviembre-diciembre 2026. Precios en USD. Pedidos por WhatsApp.</p>
             </div>
-            <figure class="overflow-hidden rounded-xl bg-[#f26522]">
-              <img src="images/catalog-cover.jpg" alt="Portada del catálogo Kafao" class="aspect-[3/4] w-full object-cover"/>
+            <figure class="catalog-viewer" id="catalog-viewer">
+              <button type="button" class="catalog-nav catalog-nav--prev" id="cat-prev" aria-label="Página anterior">‹</button>
+              <div class="catalog-stage" id="cat-stage">
+                <canvas id="cat-canvas"></canvas>
+                <p class="catalog-status" id="cat-status" data-i18n="cat.loading">Cargando catálogo…</p>
+              </div>
+              <button type="button" class="catalog-nav catalog-nav--next" id="cat-next" aria-label="Página siguiente">›</button>
+              <p class="catalog-count"><span id="cat-cur">1</span> / <span id="cat-total">–</span></p>
+              <p class="catalog-hint" data-i18n="cat.hint">Flechas o desliza para pasar la página</p>
             </figure>
           </div>
           <div class="campaign mt-16">
@@ -233,7 +285,7 @@
           <div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 class="font-display text-4xl text-ink sm:text-5xl" data-i18n="gal.title">Para ella y para él</h2>
-              <p class="mt-3 max-w-md text-ink-soft" data-i18n="gal.body">Una muestra del catálogo de septiembre. Toca una pieza para pedirla por WhatsApp.</p>
+              <p class="mt-3 max-w-md text-ink-soft" data-i18n="gal.body">Una muestra del catálogo de noviembre-diciembre. Toca una pieza para pedirla por WhatsApp.</p>
             </div>
             <div class="flex flex-wrap gap-2" id="filters">
               <button class="filter-pill on" data-filter="all">Todos</button>
@@ -397,13 +449,14 @@
     </a>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     const T = {
       es: {
         "nav.home":"Inicio","nav.catalog":"Catálogo","nav.promo":"Promociones","nav.policies":"Políticas","nav.contact":"Contacto",
         "hero.eyebrow":"Hecho a mano en los Andes ecuatorianos","hero.title":"Viste tu esencia étnica.","hero.sub":"Ropa y Accesorios Artesanales de Ecuador.","hero.cta":"Ver Colección","hero.talk":"Hablar con el atelier",
-        "cat.kicker":"01 · Octubre 2026","cat.title":"Catálogo Colección Andes","cat.body":"Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.","cat.download":"Descargar Catálogo Completo (PDF)","cat.note":"Catálogo oficial, octubre 2026. Precios en USD. Pedidos por WhatsApp.","cat.ck":"Artesanías","cat.ct":"Artesanías de Ecuador","cat.cb":"Cojines Saraguro, almohadillas Aya Huma, vírgenes quiteñas y más. Cada pieza nace en el taller de un artesano. En el catálogo están todas.",
-        "gal.kicker":"02 · Colección","gal.title":"Para ella y para él","gal.body":"Una muestra del catálogo de septiembre. Toca una pieza para pedirla por WhatsApp.",
+        "cat.kicker":"01 · Noviembre – Diciembre 2026","cat.title":"Catálogo Colección Andes","cat.body":"Buzos, ponchos, pantalones y artesanías hechas por artesanos ecuatorianos. Esta página muestra una selección; el PDF tiene la colección completa, con tallas y precios.","cat.download":"Descargar Catálogo Completo (PDF)","cat.note":"Catálogo oficial, noviembre-diciembre 2026. Precios en USD. Pedidos por WhatsApp.","cat.hint":"Flechas o desliza para pasar la página","cat.loading":"Cargando catálogo…","cat.ck":"Artesanías","cat.ct":"Artesanías de Ecuador","cat.cb":"Cojines Saraguro, almohadillas Aya Huma, vírgenes quiteñas y más. Cada pieza nace en el taller de un artesano. En el catálogo están todas.",
+        "gal.kicker":"02 · Colección","gal.title":"Para ella y para él","gal.body":"Una muestra del catálogo de noviembre-diciembre. Toca una pieza para pedirla por WhatsApp.",
         "promo.kicker":"03 · Oferta","promo.mark":"Últimas unidades","promo.title":"Últimas unidades en Buzos Deportivos Kafao. 20% de descuento.","promo.body":"Negro, azul y crema. Hasta agotar stock.","promo.cta":"Ver buzos",
         "pol.kicker":"04 · Atelier","pol.title":"Políticas de ventas","pol.lead":"Comprar a Kafao es tratar con el taller. Envíos, cambios y pagos, claros desde el primer mensaje.","pol.s1t":"Envíos Seguros","pol.s1b":"Enviamos por Servientrega a todo Ecuador. El tiempo máximo de entrega es de 48 horas laborables. En compras mayores a $50 el envío no tiene costo.","pol.s2t":"Política de Cambios","pol.s2b":"Tienes 15 días para cambiar talla o modelo, con la prenda en perfecto estado y su etiqueta. Escribe por WhatsApp y lo resolvemos.","pol.s3t":"Métodos de Pago","pol.s3b":"Transferencia a Banco Pichincha o efectivo en Quito. El pedido se reserva con un abono.",
         "bank.title":"Transferencias a Kafao","bank.lead":"Cuenta de ahorros Banco Pichincha. Copia el número al hacer el depósito.","bank.account":"Número de cuenta","bank.copy":"Copiar número","bank.type":"Tipo de cuenta","bank.holder":"Titular","bank.id":"Cédula",
@@ -413,8 +466,8 @@
       en: {
         "nav.home":"Home","nav.catalog":"Catalog","nav.promo":"Offers","nav.policies":"Policies","nav.contact":"Contact",
         "hero.eyebrow":"Handmade in the Ecuadorian Andes","hero.title":"Wear your ethnic essence.","hero.sub":"Artisan clothing and accessories from Ecuador.","hero.cta":"See the collection","hero.talk":"Talk to the atelier",
-        "cat.kicker":"01 · October 2026","cat.title":"Andes Collection Catalog","cat.body":"Hoodies, ponchos, trousers and crafts made by Ecuadorian artisans. This page shows a selection; the PDF has the full collection, with sizes and prices.","cat.download":"Download full catalog (PDF)","cat.note":"Official catalog, October 2026. Prices in USD. Orders via WhatsApp.","cat.ck":"Crafts","cat.ct":"Crafts from Ecuador","cat.cb":"Saraguro cushions, Aya Huma travel pillows, Quito virgins and more. Each piece is born in an artisan's workshop. The catalog has them all.",
-        "gal.kicker":"02 · Collection","gal.title":"For her and for him","gal.body":"A sample from the September catalog. Tap a piece to order on WhatsApp.",
+        "cat.kicker":"01 · November – December 2026","cat.title":"Andes Collection Catalog","cat.body":"Hoodies, ponchos, trousers and crafts made by Ecuadorian artisans. This page shows a selection; the PDF has the full collection, with sizes and prices.","cat.download":"Download full catalog (PDF)","cat.note":"Official catalog, November–December 2026. Prices in USD. Orders via WhatsApp.","cat.hint":"Use the arrows or swipe to turn the page","cat.loading":"Loading catalog…","cat.ck":"Crafts","cat.ct":"Crafts from Ecuador","cat.cb":"Saraguro cushions, Aya Huma travel pillows, Quito virgins and more. Each piece is born in an artisan's workshop. The catalog has them all.",
+        "gal.kicker":"02 · Collection","gal.title":"For her and for him","gal.body":"A sample from the November–December catalog. Tap a piece to order on WhatsApp.",
         "promo.kicker":"03 · Offer","promo.mark":"Last units","promo.title":"Last units of Kafao sweatshirts. 20% off.","promo.body":"Black, blue and cream. While stocks last.","promo.cta":"See sweatshirts",
         "pol.kicker":"04 · Atelier","pol.title":"Sales policies","pol.lead":"Buying from Kafao means dealing with the workshop. Shipping, exchanges and payments, clear from the first message.","pol.s1t":"Secure shipping","pol.s1b":"We ship with Servientrega across Ecuador. Delivery takes at most 48 business hours. Free shipping on orders over $50.","pol.s2t":"Exchange policy","pol.s2b":"You have 15 days to exchange size or model, with the garment in perfect condition and its tag. Write on WhatsApp and we will sort it.","pol.s3t":"Payment methods","pol.s3b":"Bank transfer to Banco Pichincha or cash in Quito. Orders are reserved with a deposit.",
         "bank.title":"Transfers to Kafao","bank.lead":"Banco Pichincha savings account. Copy the number when you deposit.","bank.account":"Account number","bank.copy":"Copy number","bank.type":"Account type","bank.holder":"Account holder","bank.id":"ID",
@@ -459,6 +512,99 @@
         li.classList.toggle("hidden-card", f !== "all" && !(li.dataset.tags || "").includes(f));
       });
     };
+
+    (function () {
+      const stage = document.getElementById("cat-stage");
+      const canvas = document.getElementById("cat-canvas");
+      const ctx = canvas.getContext("2d");
+      const prev = document.getElementById("cat-prev");
+      const next = document.getElementById("cat-next");
+      const curEl = document.getElementById("cat-cur");
+      const totalEl = document.getElementById("cat-total");
+      const status = document.getElementById("cat-status");
+      let pdfDoc = null, page = 1, rendering = false, queued = null;
+
+      function paint(num) {
+        rendering = true;
+        pdfDoc.getPage(num).then(function (p) {
+          const cssWidth = stage.clientWidth || 320;
+          const unit = p.getViewport({ scale: 1 });
+          const scale = (cssWidth / unit.width) * Math.min(window.devicePixelRatio || 1, 2);
+          const viewport = p.getViewport({ scale: scale });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          return p.render({ canvasContext: ctx, viewport: viewport }).promise;
+        }).then(function () {
+          rendering = false;
+          page = num;
+          curEl.textContent = String(num);
+          prev.disabled = num <= 1;
+          next.disabled = num >= pdfDoc.numPages;
+          status.hidden = true;
+          canvas.hidden = false;
+          if (queued !== null) { const n = queued; queued = null; paint(n); }
+        }).catch(function () {
+          status.hidden = false;
+          status.textContent = document.documentElement.lang === "en"
+            ? "Could not open the catalog. Use the download button."
+            : "No se pudo abrir el catálogo. Usa el botón de descarga.";
+        });
+      }
+
+      function go(delta) {
+        if (!pdfDoc) return;
+        const n = Math.min(Math.max(page + delta, 1), pdfDoc.numPages);
+        if (n === page) return;
+        if (rendering) queued = n;
+        else paint(n);
+      }
+
+      function load() {
+        if (pdfDoc || window.__kafaoCat) return;
+        window.__kafaoCat = true;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        pdfjsLib.getDocument("catalogo-kafao.pdf?v=novdic").promise.then(function (pdf) {
+          pdfDoc = pdf;
+          totalEl.textContent = String(pdf.numPages);
+          canvas.hidden = false;
+          paint(1);
+        }).catch(function () {
+          status.hidden = false;
+          status.textContent = "No se pudo abrir el catálogo. Usa el botón de descarga.";
+        });
+      }
+
+      canvas.hidden = true;
+      prev.onclick = function () { go(-1); };
+      next.onclick = function () { go(1); };
+      let touchX = null;
+      stage.addEventListener("touchstart", function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+      stage.addEventListener("touchend", function (e) {
+        if (touchX == null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        touchX = null;
+      }, { passive: true });
+      document.addEventListener("keydown", function (e) {
+        const box = document.getElementById("catalog-viewer").getBoundingClientRect();
+        if (box.bottom < 0 || box.top > window.innerHeight) return;
+        if (e.key === "ArrowRight") go(1);
+        if (e.key === "ArrowLeft") go(-1);
+      });
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(function (entries) {
+          if (entries.some(function (en) { return en.isIntersecting; })) { load(); io.disconnect(); }
+        }, { rootMargin: "240px" });
+        io.observe(document.getElementById("catalog-viewer"));
+      } else {
+        load();
+      }
+      let resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { if (pdfDoc) paint(page); }, 160);
+      });
+    })();
   </script>
 </body>
 </html>
